@@ -1,0 +1,14 @@
+import tkinter as tk
+from carAgency import AgenciaVehiculosApp
+
+def main():
+    root = tk.Tk()
+    app = AgenciaVehiculosApp(root)
+    
+    # Enlace para garantizar el cierre correcto de MySQL al presionar 'X'
+    root.protocol("WM_DELETE_WINDOW", app.al_cerrar)
+    
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
