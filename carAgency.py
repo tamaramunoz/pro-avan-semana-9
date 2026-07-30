@@ -1,8 +1,9 @@
 import tkinter as tk
-import styles as st
 from tkinter import ttk, messagebox
+from datetime import datetime
 from mysql.connector import Error
 from database import DatabaseManager
+import styles as st
 
 class AgenciaVehiculosApp:
     def __init__(self, root):
@@ -11,7 +12,6 @@ class AgenciaVehiculosApp:
         self.root.geometry(st.WINDOW_GEOMETRY)
         self.root.resizable(*st.WINDOW_RESIZABLE)
 
-        # Instancia del Database Manager
         self.db = DatabaseManager()
         exito, mensaje = self.db.inicializar_conexion()
         if not exito:
@@ -25,14 +25,12 @@ class AgenciaVehiculosApp:
         self.combustible_var = tk.StringVar(value="Gasolina")
         self.disponible_var = tk.BooleanVar(value=True)
 
-        # Construcción de la Interfaz
         self.crear_interfaz()
 
         if exito:
             self.mostrar_vehiculos()
 
     def crear_interfaz(self):
-        # 1. CONTENEDOR: Formulario
         frame_form = tk.LabelFrame(self.root, **st.FRAME_FORM_CONFIG)
         frame_form.pack(fill="x", padx=15, pady=10)
 
@@ -61,7 +59,6 @@ class AgenciaVehiculosApp:
         tk.Radiobutton(frame_radio, text="Disponible", variable=self.disponible_var, value=True).pack(side="left", padx=5)
         tk.Radiobutton(frame_radio, text="En Mantenimiento / Reservado", variable=self.disponible_var, value=False).pack(side="left", padx=15)
 
-        # 2. CONTENEDOR: Botones
         frame_botones = tk.Frame(self.root, pady=5)
         frame_botones.pack()
 
@@ -71,7 +68,6 @@ class AgenciaVehiculosApp:
         tk.Button(frame_botones, text="Limpiar", command=self.limpiar_campos, **st.BTN_CLEAR).grid(row=0, column=3, padx=4)
         tk.Button(frame_botones, text="Informe", command=self.generar_informe, **st.BTN_REPORT).grid(row=0, column=4, padx=4)
 
-        # 3. CONTENEDOR: Tabla
         frame_tabla = tk.LabelFrame(self.root, **st.FRAME_TABLE_CONFIG)
         frame_tabla.pack(fill="both", expand=True, padx=15, pady=10)
 
@@ -173,12 +169,15 @@ class AgenciaVehiculosApp:
 
     def generar_informe(self):
         try:
+            fecha_emision = datetime.now().strftime("%d/%m/%Y a las %H:%M hrs")
+
             disponibles, mantenimiento = self.db.obtener_metricas_informe()
             total = disponibles + mantenimiento
             tasa = (disponibles / total * 100) if total > 0 else 0
 
             mensaje_informe = (
-                f"=== INFORME DE ESTADO DE LA FLOTA ===\n\n"
+                f"=== INFORME DE ESTADO DE LA FLOTA ===\n"
+                f"Fecha de emisión: {fecha_emision}\n\n"
                 f"• Total de Vehículos Registrados : {total}\n"
                 f"• Vehículos Disponibles           : {disponibles}\n"
                 f"• En Mantenimiento / Reservados  : {mantenimiento}\n\n"
