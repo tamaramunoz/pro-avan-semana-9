@@ -5,7 +5,7 @@ class DBConnection:
     def __init__(self):
         self.db_config = {
             'user': 'root',
-            'password': '**',
+            'password': '',
             'host': 'localhost',
             'database': 'agencia_alquiler',
             'port': 3306
