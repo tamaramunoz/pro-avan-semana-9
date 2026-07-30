@@ -22,7 +22,7 @@ FRAME_TABLE_CONFIG = {
 
 BTN_ADD = {
     "bg": "#2E7D32",
-    "fg": "white",
+    "fg": "black",
     "highlightbackground": "#2E7D32",
     "width": 13,
     "font": FONT_BTN
@@ -30,7 +30,7 @@ BTN_ADD = {
 
 BTN_UPDATE = {
     "bg": COLOR_PRIMARY,
-    "fg": "white",
+    "fg": "black",
     "highlightbackground": COLOR_PRIMARY,
     "width": 13,
     "font": FONT_BTN
@@ -38,7 +38,7 @@ BTN_UPDATE = {
 
 BTN_DELETE = {
     "bg": "#C62828",
-    "fg": "white",
+    "fg": "black",
     "highlightbackground": "#C62828",
     "width": 13,
     "font": FONT_BTN
@@ -46,7 +46,7 @@ BTN_DELETE = {
 
 BTN_CLEAR = {
     "bg": "#424242",
-    "fg": "white",
+    "fg": "black",
     "highlightbackground": "#424242",
     "width": 13,
     "font": FONT_BTN
@@ -54,7 +54,7 @@ BTN_CLEAR = {
 
 BTN_REPORT = {
     "bg": "#6A1B9A",
-    "fg": "white",
+    "fg": "black",
     "highlightbackground": "#6A1B9A",
     "width": 13,
     "font": FONT_BTN

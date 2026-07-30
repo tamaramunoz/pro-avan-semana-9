@@ -17,7 +17,6 @@ class AgenciaVehiculosApp:
         if not exito:
             messagebox.showerror("Error de Conexión", f"No se pudo conectar a MySQL:\n{mensaje}")
 
-        # Variables de Control
         self.id_var = tk.StringVar()
         self.marca_var = tk.StringVar()
         self.modelo_var = tk.StringVar()
